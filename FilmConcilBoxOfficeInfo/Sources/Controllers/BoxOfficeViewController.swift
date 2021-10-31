@@ -101,6 +101,7 @@ class BoxOfficeViewController: UIViewController {
     guard let text = searchTextField.text else { return }
     
     if isTextValidationSuccess(text) {
+      self.view.endEditing(true)
       progress.show(in: view, animated: true)
       
       let calendar = Calendar.current
@@ -145,6 +146,7 @@ extension BoxOfficeViewController: UITableViewDataSource {
     cell.rankLabel.text = "\(data.rank)"
     cell.movieTitleLabel.text = data.name
     cell.releaseDateLabel.text = data.openDate
+    cell.selectionStyle = .none
     return cell
   }
 }
