@@ -19,6 +19,9 @@
 		1CD0890F272E5C690073ACCE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1CD0890E272E5C690073ACCE /* Alamofire */; };
 		1CD08911272E5EFF0073ACCE /* TextField++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD08910272E5EFE0073ACCE /* TextField++Extension.swift */; };
 		1CD08913272E5FCB0073ACCE /* CALayer++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD08912272E5FCB0073ACCE /* CALayer++Extension.swift */; };
+		1CD0891B272E61560073ACCE /* APIKEY.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CD0891A272E61560073ACCE /* APIKEY.plist */; };
+		1CD0891E272E61CB0073ACCE /* Bundle++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD0891D272E61CB0073ACCE /* Bundle++Extension.swift */; };
+		1CD08920272E61FB0073ACCE /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD0891F272E61FB0073ACCE /* APIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		1CD08908272E5AC70073ACCE /* UILabel++Designable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel++Designable.swift"; sourceTree = "<group>"; };
 		1CD08910272E5EFE0073ACCE /* TextField++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField++Extension.swift"; sourceTree = "<group>"; };
 		1CD08912272E5FCB0073ACCE /* CALayer++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer++Extension.swift"; sourceTree = "<group>"; };
+		1CD0891A272E61560073ACCE /* APIKEY.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKEY.plist; sourceTree = "<group>"; };
+		1CD0891D272E61CB0073ACCE /* Bundle++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle++Extension.swift"; sourceTree = "<group>"; };
+		1CD0891F272E61FB0073ACCE /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +76,7 @@
 			children = (
 				1CD08916272E604B0073ACCE /* Resources */,
 				1CD08915272E60420073ACCE /* Sources */,
-				1CD08900272E511E0073ACCE /* Info.plist */,
+				1CD08919272E61430073ACCE /* Supporting Files */,
 			);
 			path = FilmConcilBoxOfficeInfo;
 			sourceTree = "<group>";
@@ -78,6 +84,7 @@
 		1CD08914272E60090073ACCE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1CD0891D272E61CB0073ACCE /* Bundle++Extension.swift */,
 				1CD08910272E5EFE0073ACCE /* TextField++Extension.swift */,
 				1CD08912272E5FCB0073ACCE /* CALayer++Extension.swift */,
 				1CD08908272E5AC70073ACCE /* UILabel++Designable.swift */,
@@ -90,6 +97,7 @@
 			children = (
 				1CD088F2272E511D0073ACCE /* AppDelegate.swift */,
 				1CD088F4272E511D0073ACCE /* SceneDelegate.swift */,
+				1CD0891C272E61BA0073ACCE /* Service */,
 				1CD08917272E60620073ACCE /* Controllers */,
 				1CD08918272E60760073ACCE /* Views */,
 				1CD08914272E60090073ACCE /* Extensions */,
@@ -121,6 +129,23 @@
 				1CD08906272E59420073ACCE /* BoxOfficeTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		1CD08919272E61430073ACCE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1CD08900272E511E0073ACCE /* Info.plist */,
+				1CD0891A272E61560073ACCE /* APIKEY.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1CD0891C272E61BA0073ACCE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				1CD0891F272E61FB0073ACCE /* APIService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CD088FF272E511E0073ACCE /* LaunchScreen.storyboard in Resources */,
+				1CD0891B272E61560073ACCE /* APIKEY.plist in Resources */,
 				1CD088FC272E511E0073ACCE /* Assets.xcassets in Resources */,
 				1CD088FA272E511D0073ACCE /* Main.storyboard in Resources */,
 			);
@@ -209,6 +235,8 @@
 				1CD08907272E59420073ACCE /* BoxOfficeTableViewCell.swift in Sources */,
 				1CD08911272E5EFF0073ACCE /* TextField++Extension.swift in Sources */,
 				1CD08913272E5FCB0073ACCE /* CALayer++Extension.swift in Sources */,
+				1CD08920272E61FB0073ACCE /* APIService.swift in Sources */,
+				1CD0891E272E61CB0073ACCE /* Bundle++Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,7 +387,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5LZNHGFB8C;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FilmConcilBoxOfficeInfo/Info.plist;
+				INFOPLIST_FILE = "FilmConcilBoxOfficeInfo/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -387,7 +415,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5LZNHGFB8C;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FilmConcilBoxOfficeInfo/Info.plist;
+				INFOPLIST_FILE = "FilmConcilBoxOfficeInfo/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

@@ -14,6 +14,7 @@ class BoxOfficeViewController: UIViewController {
   // MARK: Properties
   var rank = 1 // test
   var boxOfficeData: [String] = []
+  let apiService = APIService()
   
   // MARK: UI
   @IBOutlet weak var searchTextField: UITextField!
@@ -24,6 +25,7 @@ class BoxOfficeViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     configure()
+    apiService.fetchMovieInfo("20211030")
   }
   
   // MARK: Configure
