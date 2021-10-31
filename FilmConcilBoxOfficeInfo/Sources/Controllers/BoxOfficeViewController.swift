@@ -60,6 +60,11 @@ class BoxOfficeViewController: UIViewController {
   }
   
   func isTextValidationSuccess(_ text: String) -> Bool {
+    if text.isEmpty { // 검색어 유무
+      showAlert("검색날짜가 비어있어요!\n작성 후 시도해주세요")
+      return false
+    }
+    
     if text.count != 8 { // 8자리 인지
       showAlert("8자리 숫자로만 검색헤주세요!\n(ex. 20020101)")
       return false
