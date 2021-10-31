@@ -34,7 +34,6 @@ class BoxOfficeViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     configure()
-    apiService.fetchMovieInfo("20211030")
   }
   
   // MARK: Configure
@@ -52,22 +51,25 @@ class BoxOfficeViewController: UIViewController {
     UIAlertController.show(self, contentType: .error, message: message)
   }
   
-  func textValidation(_ text: String) {
+  func isTextValidationSuccess(_ text: String) -> Bool {
     if text.count != 8 { // 8자리 인지
       showAlert("8자리 숫자로만 검색헤주세요!\n(ex. 20020101)")
+      return false
     }
     
     for t in text { // 숫자로만 이루어져 있는지
       if !t.isNumber {
         showAlert("숫자가 아닌 문자가 포함되어 있습니다.\n확인후 다시 시도해주세요")
-        break
+        return false
       }
     }
     
     let today = dateFormatter.string(from: Date())
     if text >= today { // 오늘보다 이전 날짜 인지
       showAlert("검색 가능한 가장 최신 날짜는 오늘입니다.\n오늘 혹은 보다 이전의 날짜를 입력해주세요.")
+      return false
     }
+    return true
   }
   
   // MARK: Action
@@ -79,7 +81,9 @@ class BoxOfficeViewController: UIViewController {
     }
 
     if let text = searchTextField.text {
-      textValidation(text)
+      if isTextValidationSuccess(text) {
+        apiService.fetchMovieInfo(text)
+      }
     }
     
   }
