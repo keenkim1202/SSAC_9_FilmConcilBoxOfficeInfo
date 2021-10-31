@@ -128,8 +128,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="검색 결과가 없어요 :(" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPA-EE-eYt">
-                                <rect key="frame" x="136" y="443" width="142" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⬆️ 검색 날짜의 박스오피스 정보를 알고 싶다면? ⬆️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPA-EE-eYt">
+                                <rect key="frame" x="33" y="443" width="348.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" systemColor="systemYellowColor"/>
                                 <nil key="highlightedColor"/>
@@ -166,7 +166,7 @@
     </scenes>
     <designables>
         <designable name="gaF-K7-DKV">
-            <size key="intrinsicContentSize" width="39.5" height="30.5"/>
+            <size key="intrinsicContentSize" width="29.5" height="20.5"/>
         </designable>
     </designables>
     <resources>

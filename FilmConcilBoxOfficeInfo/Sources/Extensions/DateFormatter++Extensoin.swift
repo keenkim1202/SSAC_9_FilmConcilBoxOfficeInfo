@@ -8,9 +8,9 @@
 import Foundation
 
 extension DateFormatter {
-  func toDate(date: String) -> Date {
+  func toDate(date: String) -> Date? {
     self.dateFormat = "yyyyMMdd"
-    return self.date(from: date)!
+    return self.date(from: date)
   }
   
   func toString(date: Date) -> String {

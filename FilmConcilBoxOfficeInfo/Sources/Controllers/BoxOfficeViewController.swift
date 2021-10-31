@@ -8,12 +8,14 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import JGProgressHUD
 
 // TODO: APIKEY.plist에 APIKEY를 입력해주세요.
 
 class BoxOfficeViewController: UIViewController {
   
   // MARK: Properties
+  let progress = JGProgressHUD()
   var boxOfficeData: [Movie] = [] {
     didSet {
       if !boxOfficeData.isEmpty {
@@ -65,11 +67,6 @@ class BoxOfficeViewController: UIViewController {
       return false
     }
     
-    if text.count != 8 { // 8자리 인지
-      showAlert("8자리 숫자로만 검색헤주세요!\n(ex. 20020101)")
-      return false
-    }
-    
     for t in text { // 숫자로만 이루어져 있는지
       if !t.isNumber {
         showAlert("숫자가 아닌 문자가 포함되어 있습니다.\n확인후 다시 시도해주세요")
@@ -77,8 +74,22 @@ class BoxOfficeViewController: UIViewController {
       }
     }
     
+    if text.count != 8 { // 8자리 인지
+      showAlert("8자리 숫자로만 검색헤주세요!\n(ex. 20020101)")
+      return false
+    }
+    
+    // 존재하지 않는 월, 일을 입력했을 경우
+    let date = dateFormatter.toDate(date: text)
+    
+    if date == nil {
+      showAlert("존재하지 않는 날짜입니다. 확인 후 다시 시도해주세요.")
+      return false
+    }
+    
+    // 오늘 혹은 오늘보다 이전 날짜 인지
     let today = dateFormatter.string(from: Date())
-    if text > today { // 오늘 혹은 오늘보다 이전 날짜 인지
+    if text > today {
       showAlert("검색 가능한 가장 최신 날짜는 오늘입니다.\n오늘 혹은 보다 이전의 날짜를 입력해주세요.")
       return false
     }
@@ -91,15 +102,17 @@ class BoxOfficeViewController: UIViewController {
     guard let text = searchTextField.text else { return }
     
     if isTextValidationSuccess(text) {
+      progress.show(in: view, animated: true)
+      
       let calendar = Calendar.current
-      let yesterday = calendar.date(byAdding: .day, value: -1, to: dateFormatter.toDate(date: text))
+      let yesterday = calendar.date(byAdding: .day, value: -1, to: dateFormatter.toDate(date: text)!)
       let targetDate = dateFormatter.toString(date: yesterday!)
     
       APIService.shared.fetchMovieInfo(targetDate) { code, json in
         
         let dailyBoxOfficeList = json["boxOfficeResult"]["dailyBoxOfficeList"]
         
-        dailyBoxOfficeList.map {
+        _ = dailyBoxOfficeList.map {
           let rank = $0.1["rank"].intValue
           let movieName = $0.1["movieNm"].stringValue
           let openDate = $0.1["openDt"].stringValue
@@ -107,6 +120,9 @@ class BoxOfficeViewController: UIViewController {
         }
       }
       boxOfficeData.sort{ $0.rank < $1.rank }
+      self.progress.dismiss(animated: true)
+    } else {
+      searchTextField.text = ""
     }
   }
 }
