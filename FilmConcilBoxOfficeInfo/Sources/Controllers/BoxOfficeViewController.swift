@@ -81,7 +81,6 @@ class BoxOfficeViewController: UIViewController {
     
     // 존재하지 않는 월, 일을 입력했을 경우
     let date = dateFormatter.toDate(date: text)
-    
     if date == nil {
       showAlert("존재하지 않는 날짜입니다. 확인 후 다시 시도해주세요.")
       return false
@@ -123,6 +122,7 @@ class BoxOfficeViewController: UIViewController {
       self.progress.dismiss(animated: true)
     } else {
       searchTextField.text = ""
+      emptyLabel.text = "입력 날짜에 대한 검색 결과가 없어요 ㅠ.ㅠ"
     }
   }
 }
