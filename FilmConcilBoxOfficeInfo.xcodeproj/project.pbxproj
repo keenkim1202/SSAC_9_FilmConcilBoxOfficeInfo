@@ -22,6 +22,8 @@
 		1CD0891B272E61560073ACCE /* APIKEY.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CD0891A272E61560073ACCE /* APIKEY.plist */; };
 		1CD0891E272E61CB0073ACCE /* Bundle++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD0891D272E61CB0073ACCE /* Bundle++Extension.swift */; };
 		1CD08920272E61FB0073ACCE /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD0891F272E61FB0073ACCE /* APIService.swift */; };
+		1CD08922272E68350073ACCE /* UIAlert++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD08921272E68350073ACCE /* UIAlert++Extension.swift */; };
+		1CD08924272E6A0B0073ACCE /* DateFormatter++Extensoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD08923272E6A0B0073ACCE /* DateFormatter++Extensoin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		1CD0891A272E61560073ACCE /* APIKEY.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKEY.plist; sourceTree = "<group>"; };
 		1CD0891D272E61CB0073ACCE /* Bundle++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle++Extension.swift"; sourceTree = "<group>"; };
 		1CD0891F272E61FB0073ACCE /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		1CD08921272E68350073ACCE /* UIAlert++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlert++Extension.swift"; sourceTree = "<group>"; };
+		1CD08923272E6A0B0073ACCE /* DateFormatter++Extensoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter++Extensoin.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,8 @@
 				1CD08910272E5EFE0073ACCE /* TextField++Extension.swift */,
 				1CD08912272E5FCB0073ACCE /* CALayer++Extension.swift */,
 				1CD08908272E5AC70073ACCE /* UILabel++Designable.swift */,
+				1CD08921272E68350073ACCE /* UIAlert++Extension.swift */,
+				1CD08923272E6A0B0073ACCE /* DateFormatter++Extensoin.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -230,7 +236,9 @@
 			files = (
 				1CD088F7272E511D0073ACCE /* BoxOfficeViewController.swift in Sources */,
 				1CD088F3272E511D0073ACCE /* AppDelegate.swift in Sources */,
+				1CD08922272E68350073ACCE /* UIAlert++Extension.swift in Sources */,
 				1CD088F5272E511D0073ACCE /* SceneDelegate.swift in Sources */,
+				1CD08924272E6A0B0073ACCE /* DateFormatter++Extensoin.swift in Sources */,
 				1CD08909272E5AC70073ACCE /* UILabel++Designable.swift in Sources */,
 				1CD08907272E59420073ACCE /* BoxOfficeTableViewCell.swift in Sources */,
 				1CD08911272E5EFF0073ACCE /* TextField++Extension.swift in Sources */,

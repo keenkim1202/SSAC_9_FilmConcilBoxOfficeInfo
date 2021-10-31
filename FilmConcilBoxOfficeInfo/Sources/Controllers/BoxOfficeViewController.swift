@@ -9,12 +9,21 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class BoxOfficeViewController: UIViewController {
+// TODO: APIKEY.plist에 APIKEY를 입력해주세요.
 
+class BoxOfficeViewController: UIViewController {
+  
   // MARK: Properties
   var rank = 1 // test
   var boxOfficeData: [String] = []
   let apiService = APIService()
+  let dateFormatter: DateFormatter = {
+    let df = DateFormatter()
+    df.locale = Locale(identifier: "ko-KR")
+    df.dateFormat = "YYYYMMdd"
+    
+    return df
+  }()
   
   // MARK: UI
   @IBOutlet weak var searchTextField: UITextField!
@@ -32,10 +41,35 @@ class BoxOfficeViewController: UIViewController {
   func configure() {
     rankTableView.delegate = self
     rankTableView.dataSource = self
+    dateFormatter.locale = Locale(identifier: "ko-KR")
+    
     searchTextField.setPlaceholderColor(.lightGray)
     searchTextField.layer.addBorder([.bottom], color: .white, width: 2)
   }
-
+  
+  // MARK: Alert
+  fileprivate func showAlert(_ message: String) {
+    UIAlertController.show(self, contentType: .error, message: message)
+  }
+  
+  func textValidation(_ text: String) {
+    if text.count != 8 { // 8자리 인지
+      showAlert("8자리 숫자로만 검색헤주세요!\n(ex. 20020101)")
+    }
+    
+    for t in text { // 숫자로만 이루어져 있는지
+      if !t.isNumber {
+        showAlert("숫자가 아닌 문자가 포함되어 있습니다.\n확인후 다시 시도해주세요")
+        break
+      }
+    }
+    
+    let today = dateFormatter.string(from: Date())
+    if text >= today { // 오늘보다 이전 날짜 인지
+      showAlert("검색 가능한 가장 최신 날짜는 오늘입니다.\n오늘 혹은 보다 이전의 날짜를 입력해주세요.")
+    }
+  }
+  
   // MARK: Action
   @IBAction func onSearch(_ sender: UIButton) {
     if !boxOfficeData.isEmpty {
@@ -43,6 +77,11 @@ class BoxOfficeViewController: UIViewController {
     } else {
       emptyLabel.textColor = .systemYellow
     }
+
+    if let text = searchTextField.text {
+      textValidation(text)
+    }
+    
   }
   
 }
