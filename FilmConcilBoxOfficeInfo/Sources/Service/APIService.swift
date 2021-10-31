@@ -12,10 +12,12 @@ import SwiftyJSON
 class APIService {
   
   static let shared = APIService()
+  typealias CompletionHandler = (Int, JSON) -> ()
+  
   static let url = "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json"
   static let apikey = Bundle.main.apiKey
   
-  func fetchMovieInfo(_ targetDate: String) {
+  func fetchMovieInfo(_ targetDate: String, result: @escaping CompletionHandler) {
     
     let params = [
       "key": Bundle.main.apiKey,
@@ -24,14 +26,15 @@ class APIService {
     AF.request(
       APIService.url,
       method: .get,
-      parameters: params).validate().responseJSON { response in
+      parameters: params).validate(statusCode: 200...500).responseJSON { response in
       switch response.result {
       case .success(let value):
         let json = JSON(value)
-        print("JSON: \(json)")
+        let code = response.response?.statusCode ?? 500
+        result(code, json)
         
       case .failure(let error):
-        print(error)
+        print("ERROR: \(error)")
       }
     }
   }

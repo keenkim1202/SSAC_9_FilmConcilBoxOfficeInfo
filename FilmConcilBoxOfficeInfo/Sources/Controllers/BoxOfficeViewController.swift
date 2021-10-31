@@ -14,9 +14,17 @@ import SwiftyJSON
 class BoxOfficeViewController: UIViewController {
   
   // MARK: Properties
-  var rank = 1 // test
-  var boxOfficeData: [String] = []
-  let apiService = APIService()
+  var boxOfficeData: [Movie] = [] {
+    didSet {
+      if !boxOfficeData.isEmpty {
+        emptyLabel.textColor = .clear
+      } else {
+        emptyLabel.textColor = .systemYellow
+      }
+      rankTableView.reloadData()
+    }
+  }
+  
   let dateFormatter: DateFormatter = {
     let df = DateFormatter()
     df.locale = Locale(identifier: "ko-KR")
@@ -65,7 +73,7 @@ class BoxOfficeViewController: UIViewController {
     }
     
     let today = dateFormatter.string(from: Date())
-    if text >= today { // 오늘보다 이전 날짜 인지
+    if text > today { // 오늘 혹은 오늘보다 이전 날짜 인지
       showAlert("검색 가능한 가장 최신 날짜는 오늘입니다.\n오늘 혹은 보다 이전의 날짜를 입력해주세요.")
       return false
     }
@@ -74,20 +82,27 @@ class BoxOfficeViewController: UIViewController {
   
   // MARK: Action
   @IBAction func onSearch(_ sender: UIButton) {
-    if !boxOfficeData.isEmpty {
-      emptyLabel.textColor = .clear
-    } else {
-      emptyLabel.textColor = .systemYellow
-    }
-
-    if let text = searchTextField.text {
-      if isTextValidationSuccess(text) {
-        apiService.fetchMovieInfo(text)
-      }
-    }
+    guard let text = searchTextField.text else { return }
     
+    if isTextValidationSuccess(text) {
+      let calendar = Calendar.current
+      let yesterday = calendar.date(byAdding: .day, value: -1, to: dateFormatter.toDate(date: text))
+      let targetDate = dateFormatter.toString(date: yesterday!)
+    
+      APIService.shared.fetchMovieInfo(targetDate) { code, json in
+        
+        let dailyBoxOfficeList = json["boxOfficeResult"]["dailyBoxOfficeList"]
+        
+        dailyBoxOfficeList.map {
+          let rank = $0.1["rank"].intValue
+          let movieName = $0.1["movieNm"].stringValue
+          let openDate = $0.1["openDt"].stringValue
+          self.boxOfficeData.append(Movie(rank: rank, name: movieName, openDate: openDate))
+        }
+      }
+      boxOfficeData.sort{ $0.rank < $1.rank }
+    }
   }
-  
 }
 
 // MARK: Extension - TableView Delegate & DataSource
@@ -104,8 +119,10 @@ extension BoxOfficeViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: BoxOfficeTableViewCell.identifier) as? BoxOfficeTableViewCell else { return UITableViewCell() }
-    cell.rankLabel.text = "\(rank)"
-    rank += 1 // test
+    let data = boxOfficeData[indexPath.row]
+    cell.rankLabel.text = "\(data.rank)"
+    cell.movieTitleLabel.text = data.name
+    cell.releaseDateLabel.text = data.openDate
     return cell
   }
 }
