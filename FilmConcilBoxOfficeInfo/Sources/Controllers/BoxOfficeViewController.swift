@@ -82,6 +82,7 @@ class BoxOfficeViewController: UIViewController {
   
   // MARK: Action
   @IBAction func onSearch(_ sender: UIButton) {
+    boxOfficeData = []
     guard let text = searchTextField.text else { return }
     
     if isTextValidationSuccess(text) {
