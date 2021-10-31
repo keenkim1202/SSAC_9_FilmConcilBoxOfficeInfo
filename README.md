@@ -21,4 +21,4 @@
 |<img src="https://user-images.githubusercontent.com/59866819/139573324-54873733-14d5-4592-bcde-d8364ef706b8.png" />|<img width="120" src="https://user-images.githubusercontent.com/59866819/135194858-4405d3a0-0de3-4ca6-a594-3b08e0ae951b.png" />|<img width="58%" src="https://user-images.githubusercontent.com/59866819/139573286-d86f4547-b2c4-45df-9b25-dd1eda5d7d63.png" />|
 
 # 실행 영상
-<p align="center"><img width="30%" src="https://user-images.githubusercontent.com/59866819/139573290-d8ddc09e-e531-45d0-b5ae-68bb8acc4f0e.mp4" /></p>
+<p align="center"><img width="30%" src="https://user-images.githubusercontent.com/59866819/139574173-cc1f6381-ca27-4a47-a5f9-f867250a826b.mp4" /></p>
