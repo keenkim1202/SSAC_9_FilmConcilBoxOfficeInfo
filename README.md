@@ -9,6 +9,7 @@
 - [x] 8자리로 이루어진 검색 날짜를 기준으로 어제자 박스오피스 정보를 가져옵니다. (순위, 영화제목, 공개날짜)
 - [x] Alamofire를 통해 openWeather api의 json 형식으로 된 데이터를 가져왔습니다.
 - [x] SwiftyJSON을 통해 JSON 형식의 데이터에서 원하는 정보를 파싱하여 tableView에 뿌려주었습니다.
+- [x] Realm 적용하여 이전에 검색헀던 날짜의 boxOffice정보를 불러오고, 검색한 적 없는 날짜의 boxOffice정보는 api를 통헤 데이터 가져옵니다.
 
 # 추가 구현 사항 
 - [x] APIKEY 정보를 숨김처리 하였습니다.
