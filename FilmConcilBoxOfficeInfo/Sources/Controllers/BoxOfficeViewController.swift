@@ -47,8 +47,8 @@ class BoxOfficeViewController: UIViewController {
     configure()
     
     self.tasks = localRealm.objects(MovieList.self)
-    print("Realm Location: ", localRealm.configuration.fileURL)
-    print("tasks: \(tasks)")
+//    print("Realm Location: ", localRealm.configuration.fileURL)
+//    print("tasks: \(tasks)")
   }
   
   // MARK: - Configure
@@ -119,14 +119,10 @@ class BoxOfficeViewController: UIViewController {
   func fetchMovieInfo() {
     let targetDate = getTargetDate()
     
-    if isFetcehdBefore(searchDate: targetDate) {
-      print("FETCH - fetch된적 있음.")
+    if isFetcehdBefore(searchDate: targetDate) { // fetch된 적이 있을 때
       let specificMovieList = localRealm.object(ofType: MovieList.self, forPrimaryKey: targetDate)
-      
       self.boxOfficeData = specificMovieList
-      rankTableView.reloadData()
-    } else {
-      print("FETCH - fetch된적 없음.")
+    } else { // fetch된 적이 없을 때
       APIService.shared.fetchMovieInfo(targetDate) { code, json in
         
         let dailyBoxOfficeList = json["boxOfficeResult"]["dailyBoxOfficeList"].arrayValue
